@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax With Json</title>
+</head>
+<body>
+    <button id="btn">Get Data</button>
+    <h1 id="content"></h1>
+    <script>
+        
+        let btn = document.getElementById('btn');
+        btn.addEventListener('click',runajax);
+
+         function runajax()
+         {
+        let xhr = new XMLHttpRequest();
+         
+        xhr.open('GET','mydata.json',true);
+
+        xhr.onreadystatechange = function()
+        {
+            if(this.readyState == 4 && this.status == 200)
+            {
+                //content.innerText=this.responseText;
+                let data = JSON.parse(this.responseText);
+
+                content.innerText=data.user;
+            }
+           
+        }
+        xhr.send();
+    }  
+
+    </script>
+</body>
+</html>
